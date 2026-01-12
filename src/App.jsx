@@ -27,8 +27,7 @@ function App() {
 
   const handleCopy = async () => {
     try {
-      const uniquenessId = Date.now().toString(36) + Math.random().toString(36).substring(2);
-      const staticCard = <SignatureCard data={data} config={config} readonly={true} uniqueness={uniquenessId} />;
+      const staticCard = <SignatureCard data={data} config={config} readonly={true} />;
       let html = renderToStaticMarkup(staticCard);
 
       // GMAIL COLOR-LOCK BYPASS
@@ -63,8 +62,7 @@ function App() {
 
   const handleDownload = () => {
     try {
-      const uniquenessId = Date.now().toString(36) + Math.random().toString(36).substring(2);
-      const staticCard = <SignatureCard data={data} config={config} readonly={true} uniqueness={uniquenessId} />;
+      const staticCard = <SignatureCard data={data} config={config} readonly={true} />;
       let html = renderToStaticMarkup(staticCard);
 
       // Apply Gmail fixes to download as well

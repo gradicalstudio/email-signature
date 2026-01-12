@@ -136,162 +136,158 @@ const SignatureCard = ({ data, setData, config = {}, readonly = false, uniquenes
     };
 
     return (
-        <React.Fragment>
-            <div style={{ maxHeight: '0px', overflow: 'hidden', fontSize: '1px', color: '#000E28', lineHeight: '1px', opacity: 0, msoHide: 'all' }}>
-                {uniqueness}
-            </div>
-            <table
-                cellPadding="0"
-                cellSpacing="0"
-                border="0"
-                bgcolor="#000E28"
-                align="left"
-                style={{
-                    ...cardStyles.table(config.cardWidth || 450, config.cardHeight || 130),
-                    outline: 'none',
-                }}
-                id={readonly ? undefined : "signature-card-preview"}
-                width={config.cardWidth || 450}
-            >
-                <tr>
-                    <td bgcolor="#000E28" style={cardStyles.mainCell}>
+        <table
+            cellPadding="0"
+            cellSpacing="0"
+            border="0"
+            bgcolor="#000E28"
+            align="left"
+            role="presentation"
+            style={{
+                ...cardStyles.table(config.cardWidth || 450, config.cardHeight || 130),
+                outline: 'none',
+            }}
+            id={readonly ? undefined : "signature-card-preview"}
+            width={config.cardWidth || 450}
+        >
+            <tr>
+                <td bgcolor="#000E28" style={cardStyles.mainCell}>
 
-                        {/* TOP SECTION: Name */}
-                        <table cellPadding="0" cellSpacing="0" border="0" width="100%">
-                            <tr>
-                                <td>
-                                    {readonly ? (
-                                        <div style={dynamicStyles.name}>
-                                            <font color="#fefefe">
-                                                <span style={{ color: '#fefefe', fontWeight: config.nameWeight || '500', fontFamily: 'Inter, -apple-system, sans-serif', letterSpacing: '-1.2px', lineHeight: '1.0' }}>
-                                                    {data.name}
-                                                </span>
-                                            </font>
-                                        </div>
-                                    ) : (
-                                        <input
-                                            style={{ ...cardStyles.inputReset, ...dynamicStyles.name }}
-                                            value={data.name}
-                                            onChange={(e) => handleChange('name', e.target.value)}
-                                            placeholder="Name"
-                                        />
-                                    )}
-                                </td>
-                            </tr>
-                        </table>
-
-                        {/* MIDDLE SECTION: Role with Dots Icon */}
-                        <table cellPadding="0" cellSpacing="0" border="0" width="100%" style={{ marginTop: '2px' }}>
-                            <tr>
-                                <td valign="middle">
-                                    <table cellPadding="0" cellSpacing="0" border="0" width="100%">
-                                        <tr>
-                                            <td width="16" valign="middle" style={{ width: '16px', verticalAlign: 'middle', paddingRight: '6px', lineHeight: 0 }}>
-                                                {/* Bullet Pattern recreaated with table to ensure it NEVER breaks */}
-                                                <table cellPadding="0" cellSpacing="0" border="0" width="12" height="12">
-                                                    <tr>
-                                                        <td align="left" valign="top" style={{ lineHeight: '1px', fontSize: '1px' }}>
-                                                            <div style={{ width: '3px', height: '3px', backgroundColor: 'rgba(255, 255, 255, 0.6)', borderRadius: '50%' }}></div>
-                                                        </td>
-                                                        <td width="6"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td height="1"></td>
-                                                        <td height="1"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td align="right" valign="middle" style={{ lineHeight: '1px', fontSize: '1px' }}>
-                                                            <div style={{ width: '3px', height: '3px', backgroundColor: 'rgba(255, 255, 255, 0.6)', borderRadius: '50%' }}></div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td height="1"></td>
-                                                        <td height="1"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td align="left" valign="bottom" style={{ lineHeight: '1px', fontSize: '1px' }}>
-                                                            <div style={{ width: '3px', height: '3px', backgroundColor: 'rgba(255, 255, 255, 0.6)', borderRadius: '50%' }}></div>
-                                                        </td>
-                                                        <td></td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                            <td width="100%" valign="middle" style={{ width: '100%', verticalAlign: 'middle' }}>
-                                                {readonly ? (
-                                                    <span style={dynamicStyles.role}>
-                                                        <font color="#99a1af">
-                                                            <span style={{ color: 'rgba(254, 254, 254, 0.7)', fontWeight: config.roleWeight || '500', fontFamily: 'Inter, -apple-system, sans-serif', letterSpacing: '-0.5px', lineHeight: '1.2' }}>
-                                                                {data.role}
-                                                            </span>
-                                                        </font>
-                                                    </span>
-                                                ) : (
-                                                    <input
-                                                        style={{ ...cardStyles.inputReset, ...dynamicStyles.role }}
-                                                        value={data.role}
-                                                        onChange={(e) => handleChange('role', e.target.value)}
-                                                        placeholder="Role"
-                                                    />
-                                                )}
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-
-                        {/* SPACER - Pushes bottom row down. */}
-                        <div style={{ height: `${(config.cardHeight || 130) - 105}px`, minHeight: '10px', lineHeight: '1px', fontSize: '1px' }}>&nbsp;</div>
-
-
-                        {/* BOTTOM SECTION: Email (Left) and Social Icons (Right) */}
-                        <table cellPadding="0" cellSpacing="0" border="0" width="100%">
-                            <tr>
-                                <td align="left" valign="middle" style={{ verticalAlign: 'middle' }}>
-                                    {/* Email */}
-                                    {readonly ? (
-                                        <a href={`mailto:${data.email}`} style={{ ...dynamicStyles.email, verticalAlign: 'middle', textDecoration: 'none', border: 'none', display: 'inline-block' }}>
-                                            <span style={{ color: '#fefefe', fontWeight: config.emailWeight || '400', fontFamily: 'Inter, -apple-system, sans-serif', letterSpacing: '-0.2px', lineHeight: '1.2', textDecoration: 'none' }}>
-                                                {data.email}
+                    {/* TOP SECTION: Name */}
+                    <table cellPadding="0" cellSpacing="0" border="0" width="100%" role="presentation">
+                        <tr>
+                            <td>
+                                {readonly ? (
+                                    <div style={dynamicStyles.name}>
+                                        <font color="#fefefe">
+                                            <span style={{ color: '#fefefe', fontWeight: config.nameWeight || '500', fontFamily: 'Inter, -apple-system, sans-serif', letterSpacing: '-1.2px', lineHeight: '1.0' }}>
+                                                {data.name}
                                             </span>
-                                        </a>
-                                    ) : (
-                                        <input
-                                            style={{ ...cardStyles.inputReset, ...dynamicStyles.email, verticalAlign: 'middle' }}
-                                            value={data.email}
-                                            onChange={(e) => handleChange('email', e.target.value)}
-                                            placeholder="Email"
-                                        />
-                                    )}
-                                </td>
-                                <td align="right" valign="middle" style={{ verticalAlign: 'middle' }}>
-                                    {/* Icons */}
-                                    <table cellPadding="0" cellSpacing="0" border="0" align="right">
-                                        <tr>
-                                            {data.linkedin && (
-                                                <td style={{ paddingLeft: '10px', verticalAlign: 'middle' }} valign="middle">
-                                                    <a href={data.linkedin.startsWith('http') ? data.linkedin : `https://${data.linkedin}`} style={{ textDecoration: 'none', display: 'inline-block', verticalAlign: 'middle', lineHeight: 0, cursor: 'pointer', pointerEvents: 'auto' }}>
-                                                        <img src={ICON_URLS.linkedin} width="18" height="18" alt="L" style={{ border: 'none', width: '18px', height: '18px', display: 'block' }} />
-                                                    </a>
-                                                </td>
+                                        </font>
+                                    </div>
+                                ) : (
+                                    <input
+                                        style={{ ...cardStyles.inputReset, ...dynamicStyles.name }}
+                                        value={data.name}
+                                        onChange={(e) => handleChange('name', e.target.value)}
+                                        placeholder="Name"
+                                    />
+                                )}
+                            </td>
+                        </tr>
+                    </table>
+
+                    {/* MIDDLE SECTION: Role with Dots Icon */}
+                    <table cellPadding="0" cellSpacing="0" border="0" width="100%" style={{ marginTop: '2px' }} role="presentation">
+                        <tr>
+                            <td valign="middle">
+                                <table cellPadding="0" cellSpacing="0" border="0" width="100%" role="presentation">
+                                    <tr>
+                                        <td width="16" valign="middle" style={{ width: '16px', verticalAlign: 'middle', paddingRight: '6px', lineHeight: 0 }}>
+                                            {/* Bullet Pattern recreaated with table to ensure it NEVER breaks */}
+                                            <table cellPadding="0" cellSpacing="0" border="0" width="12" height="12" role="presentation">
+                                                <tr>
+                                                    <td align="left" valign="top" style={{ lineHeight: '1px', fontSize: '1px' }}>
+                                                        <div style={{ width: '3px', height: '3px', backgroundColor: 'rgba(255, 255, 255, 0.6)', borderRadius: '50%' }}></div>
+                                                    </td>
+                                                    <td width="6"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td height="1"></td>
+                                                    <td height="1"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td align="right" valign="middle" style={{ lineHeight: '1px', fontSize: '1px' }}>
+                                                        <div style={{ width: '3px', height: '3px', backgroundColor: 'rgba(255, 255, 255, 0.6)', borderRadius: '50%' }}></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td height="1"></td>
+                                                    <td height="1"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="bottom" style={{ lineHeight: '1px', fontSize: '1px' }}>
+                                                        <div style={{ width: '3px', height: '3px', backgroundColor: 'rgba(255, 255, 255, 0.6)', borderRadius: '50%' }}></div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td width="100%" valign="middle" style={{ width: '100%', verticalAlign: 'middle' }}>
+                                            {readonly ? (
+                                                <span style={dynamicStyles.role}>
+                                                    <font color="#99a1af">
+                                                        <span style={{ color: 'rgba(254, 254, 254, 0.7)', fontWeight: config.roleWeight || '500', fontFamily: 'Inter, -apple-system, sans-serif', letterSpacing: '-0.5px', lineHeight: '1.2' }}>
+                                                            {data.role}
+                                                        </span>
+                                                    </font>
+                                                </span>
+                                            ) : (
+                                                <input
+                                                    style={{ ...cardStyles.inputReset, ...dynamicStyles.role }}
+                                                    value={data.role}
+                                                    onChange={(e) => handleChange('role', e.target.value)}
+                                                    placeholder="Role"
+                                                />
                                             )}
-                                            {data.website && (
-                                                <td style={{ paddingLeft: '8px', verticalAlign: 'middle' }} valign="middle">
-                                                    <a href={data.website.startsWith('http') ? data.website : `https://${data.website}`} style={{ textDecoration: 'none', display: 'inline-block', verticalAlign: 'middle', lineHeight: 0, cursor: 'pointer', pointerEvents: 'auto' }}>
-                                                        <img src={ICON_URLS.website} width="18" height="18" alt="W" style={{ border: 'none', width: '18px', height: '18px', display: 'block' }} />
-                                                    </a>
-                                                </td>
-                                            )}
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </React.Fragment>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                    {/* SPACER - Pushes bottom row down. */}
+                    <div style={{ height: `${(config.cardHeight || 130) - 105}px`, minHeight: '10px', lineHeight: '1px', fontSize: '1px' }}>&nbsp;</div>
+
+
+                    {/* BOTTOM SECTION: Email (Left) and Social Icons (Right) */}
+                    <table cellPadding="0" cellSpacing="0" border="0" width="100%" role="presentation">
+                        <tr>
+                            <td align="left" valign="middle" style={{ verticalAlign: 'middle' }}>
+                                {/* Email */}
+                                {readonly ? (
+                                    <a href={`mailto:${data.email}`} style={{ ...dynamicStyles.email, verticalAlign: 'middle', textDecoration: 'none', border: 'none', display: 'inline-block' }}>
+                                        <span style={{ color: '#fefefe', fontWeight: config.emailWeight || '400', fontFamily: 'Inter, -apple-system, sans-serif', letterSpacing: '-0.2px', lineHeight: '1.2', textDecoration: 'none' }}>
+                                            {data.email}
+                                        </span>
+                                    </a>
+                                ) : (
+                                    <input
+                                        style={{ ...cardStyles.inputReset, ...dynamicStyles.email, verticalAlign: 'middle' }}
+                                        value={data.email}
+                                        onChange={(e) => handleChange('email', e.target.value)}
+                                        placeholder="Email"
+                                    />
+                                )}
+                            </td>
+                            <td align="right" valign="middle" style={{ verticalAlign: 'middle' }}>
+                                {/* Icons */}
+                                <table cellPadding="0" cellSpacing="0" border="0" align="right" role="presentation">
+                                    <tr>
+                                        {data.linkedin && (
+                                            <td style={{ paddingLeft: '10px', verticalAlign: 'middle' }} valign="middle">
+                                                <a href={data.linkedin.startsWith('http') ? data.linkedin : `https://${data.linkedin}`} style={{ textDecoration: 'none', display: 'inline-block', verticalAlign: 'middle', lineHeight: 0, cursor: 'pointer', pointerEvents: 'auto' }}>
+                                                    <img src={ICON_URLS.linkedin} width="18" height="18" alt="LinkedIn Profile" style={{ border: 'none', width: '18px', height: '18px', display: 'block' }} />
+                                                </a>
+                                            </td>
+                                        )}
+                                        {data.website && (
+                                            <td style={{ paddingLeft: '8px', verticalAlign: 'middle' }} valign="middle">
+                                                <a href={data.website.startsWith('http') ? data.website : `https://${data.website}`} style={{ textDecoration: 'none', display: 'inline-block', verticalAlign: 'middle', lineHeight: 0, cursor: 'pointer', pointerEvents: 'auto' }}>
+                                                    <img src={ICON_URLS.website} width="18" height="18" alt="Company Website" style={{ border: 'none', width: '18px', height: '18px', display: 'block' }} />
+                                                </a>
+                                            </td>
+                                        )}
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     );
 };
 
