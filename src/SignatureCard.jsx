@@ -137,7 +137,7 @@ const SignatureCard = ({ data, setData, config = {}, readonly = false, uniquenes
 
     return (
         <React.Fragment>
-            <div style={{ display: 'none', fontSize: '1px', color: 'transparent', lineHeight: '1px', opacity: 0 }}>
+            <div style={{ maxHeight: '0px', overflow: 'hidden', fontSize: '1px', color: '#000E28', lineHeight: '1px', opacity: 0, msoHide: 'all' }}>
                 {uniqueness}
             </div>
             <table
