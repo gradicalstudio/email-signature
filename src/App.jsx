@@ -27,12 +27,13 @@ function App() {
 
   const handleCopy = async () => {
     try {
-      const staticCard = <SignatureCard data={data} config={config} readonly={true} />;
+      const uniquenessId = Date.now().toString(36) + Math.random().toString(36).substring(2);
+      const staticCard = <SignatureCard data={data} config={config} readonly={true} uniqueness={uniquenessId} />;
       let html = renderToStaticMarkup(staticCard);
 
       // GMAIL COLOR-LOCK BYPASS
-      html = html.replace(/color:\s?#fefefe/gi, 'color:#fefefe !important; -webkit-text-fill-color:#fefefe !important');
-      html = html.replace(/rgba\(\s?254,\s?254,\s?254,\s?0.7\s?\)/g, 'rgba(254,254,254,0.7) !important; -webkit-text-fill-color:rgba(254,254,254,0.7) !important');
+      html = html.replace(/color:\s?#fefefe/gi, 'color:#fefefe !important; -webkit-text-fill-color:#fefefe !important; text-shadow: 0 0 0 #fefefe !important');
+      html = html.replace(/rgba\(\s?254,\s?254,\s?254,\s?0.7\s?\)/g, 'rgba(254,254,254,0.7) !important; -webkit-text-fill-color:rgba(254,254,254,0.7) !important; text-shadow: 0 0 0 rgba(254,254,255,0.7) !important');
       html = html.replace(/font-family:[^;"]+/gi, (match) => match + ' !important');
       html = html.replace(/font-weight:[^;"]+/gi, (match) => match + ' !important');
       html = html.replace(/letter-spacing:[^;"]+/gi, (match) => match + ' !important');
@@ -62,12 +63,13 @@ function App() {
 
   const handleDownload = () => {
     try {
-      const staticCard = <SignatureCard data={data} config={config} readonly={true} />;
+      const uniquenessId = Date.now().toString(36) + Math.random().toString(36).substring(2);
+      const staticCard = <SignatureCard data={data} config={config} readonly={true} uniqueness={uniquenessId} />;
       let html = renderToStaticMarkup(staticCard);
 
       // Apply Gmail fixes to download as well
-      html = html.replace(/color:\s?#fefefe/gi, 'color:#fefefe !important; -webkit-text-fill-color:#fefefe !important');
-      html = html.replace(/rgba\(\s?254,\s?254,\s?254,\s?0.7\s?\)/g, 'rgba(254,254,254,0.7) !important; -webkit-text-fill-color:rgba(254,254,254,0.7) !important');
+      html = html.replace(/color:\s?#fefefe/gi, 'color:#fefefe !important; -webkit-text-fill-color:#fefefe !important; text-shadow: 0 0 0 #fefefe !important');
+      html = html.replace(/rgba\(\s?254,\s?254,\s?254,\s?0.7\s?\)/g, 'rgba(254,254,254,0.7) !important; -webkit-text-fill-color:rgba(254,254,254,0.7) !important; text-shadow: 0 0 0 rgba(254,254,255,0.7) !important');
       html = html.replace(/font-family:[^;"]+/gi, (match) => match + ' !important');
       html = html.replace(/font-weight:[^;"]+/gi, (match) => match + ' !important');
       html = html.replace(/letter-spacing:[^;"]+/gi, (match) => match + ' !important');
